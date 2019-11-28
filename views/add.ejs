@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <style>
+        body{
+            padding: 10px;
+        }
+        #form{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden Form -->
+    <div class="ui raised segment">
+    <form id="form" method="POST">
+           <input type="text" name="question" placeholder="Type Something.">
+          <button  type="submit" formaction="/" class="ui tiny green button">Submit</button> 
+    </form>
+    <br>
+    <!-- add button -->
+    <div id="button" class="ui animated blue inverted fade button" tabindex="0">
+            <div class="visible content">ADD</div>
+            <div class="hidden content" style="font-size: 15px;">
+              <strong>ADD</strong>
+            </div>
+          </div>
+    <br>
+    <ul>
+
+    <!-- database data -->
+    <% question.forEach((ques) => { %>
+
+        <li><%= ques["question"] %></li>
+    <% }) %>
+    </ul>
+    <br>
+
+    <!-- Delete everything -->
+    <% if(question.length > 0) { %>
+    <form action="/?_method=DELETE" method="POST">
+        <button type="submit" class="ui red button"><i class="ui trash icon"></i></button>
+    </form>
+     <% } %>
+ </div>
+
+    <script>
+        $("#button").click(() =>{
+            $("form").slideToggle();
+        })
+    </script>
+</body>
+</html>
